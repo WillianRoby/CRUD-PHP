@@ -48,6 +48,7 @@ session_start();
         </tr>
       </thead>
       <tbody>
+
       <?php
         while($linha = mysqli_fetch_assoc($dados)){
           $id = $linha['id'];
@@ -65,16 +66,46 @@ session_start();
                   <td>$data_nascimento</td>
                   <td width=150px>
                     <a href='cadastro_Edit.php?id=$id' class='btn btn-success btn-sm'>Editar</a>
-                    <a href='' class='btn btn-danger btn-sm'>Excluir</a>
+                    <a href='' class='btn btn-danger btn-sm' data-bs-toggle='modal' data-bs-target='#confirma' onclick=" .'"' ."pegar_dados($id, '$nome')" .'"' ." >Excluir</a>
                   <td>
                 </tr>";
         }
       ?>
       </tbody>
     </table>
-            <a href="index.php" class="btn btn-secondary">Voltar</a>
+            <a href="index.php" class="btn btn-secondary">Voltar para o início</a>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="confirma" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form action="excluir.php" method="POST">
+       <p> Você realmente deseja excluir <b id="nome_pessoa">Nome da pessoa </b>?</p>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+          <input type="hidden" name="id" id="cod_pessoa" value="">
+          <input type="hidden" name="nome" id="pessoa" value="">
+          <input type="submit" class="btn btn-danger" value="Sim">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+      <script type="text/javascript">
+        function pegar_dados(id, nome){
+          document.getElementById('nome_pessoa').innerHTML = nome;
+          document.getElementById('pessoa').value = nome;
+          document.getElementById('cod_pessoa').value = id;
+        }
+      </script>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
