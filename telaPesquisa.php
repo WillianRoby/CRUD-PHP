@@ -103,7 +103,7 @@ session_start();
         function pegar_dados(id, nome){
           document.getElementById('nome_pessoa').innerHTML = nome;
           document.getElementById('pessoa').value = nome;
-          document.getElementById('cod_pessoa').value = id;
+          document.getElementById('cod_pessoa').value= id;
         }
       </script>
 
